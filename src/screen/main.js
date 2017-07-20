@@ -8,7 +8,7 @@ import{
 } from 'react-native';
 import Login from './login';
 import Register from './register';
-
+import Desktop from './desktop'
 import {StackNavigator, navigate} from 'react-navigation';
 
 class Main extends Component {
@@ -85,5 +85,5 @@ export default PatientTrackApp = StackNavigator({
   Home:    { screen: Main },
   Login:   { screen: Login},
   SignUp:  { screen: Register},
-//   Desktop: {screen: HomePage}
+  Desktop: {screen: Desktop}
 });
