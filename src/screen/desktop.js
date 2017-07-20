@@ -16,9 +16,7 @@ export default class Desktop extends Component {
         position: 'absolute',
         backgroundColor: 'transparent',
         zIndex: 100,
-        top: 120,
-        left: 140,
-        right: 142,
+
       },
       headerTintColor:"#bdbdbd"
     });
@@ -32,8 +30,7 @@ export default class Desktop extends Component {
 
     render() {
         return (             
-            <Image style={styles.backgroundImg} source={require('./../Image/whiteabstract.jpg')}>
-                <ScrollableTabView tabBarBackgroundColor ="transparent" tabBarActiveTextColor ="white" 
+                <ScrollableTabView tabBarBackgroundColor ="transparent" tabBarActiveTextColor ="navy" 
                         tabBarPosition="overlayBottom"
                         ref={(tabView) => { this.tabView = tabView; }}>
                     <View tabLabel='Profile'>
@@ -49,7 +46,6 @@ export default class Desktop extends Component {
                         
                     </View>
                 </ScrollableTabView>
-                        </Image>
         );
     }
 }
