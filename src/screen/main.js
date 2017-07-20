@@ -6,7 +6,9 @@ import{
     Text,
     View
 } from 'react-native';
-import {StackNavigator, navigate} from 'react-navigation'
+import Login from './login';
+
+import {StackNavigator, navigate} from 'react-navigation';
 
 class Main extends Component {
     static navigationOptions = {
@@ -26,7 +28,7 @@ class Main extends Component {
         return (
             <Image  style={styles.backgroundImg} source={require('./../Image/abstract2.jpg')} 
                     onLayout={this._onLayoutDidChange}>
-                <TouchableHighlight onPress={() => navigate('SignIn')}
+                <TouchableHighlight onPress={() => navigate('Login')}
                                     underlayColor ="#efefef" style={styles.submitBtn1}>
                     <Text style={styles.submitText}>Login</Text>
                 </TouchableHighlight>
@@ -78,9 +80,9 @@ const styles = StyleSheet.create({
         width:420
     },
 });
-export default  PatientTrackApp = StackNavigator({
+export default PatientTrackApp = StackNavigator({
   Home:    { screen: Main },
-//   Login:   { screen: Login},
+  Login:   { screen: Login},
 //   SignUp:  { screen: Register},
 //   Desktop: {screen: HomePage}
 });
