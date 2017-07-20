@@ -7,6 +7,7 @@ import{
     View
 } from 'react-native';
 import Login from './login';
+import Register from './register';
 
 import {StackNavigator, navigate} from 'react-navigation';
 
@@ -83,6 +84,6 @@ const styles = StyleSheet.create({
 export default PatientTrackApp = StackNavigator({
   Home:    { screen: Main },
   Login:   { screen: Login},
-//   SignUp:  { screen: Register},
+  SignUp:  { screen: Register},
 //   Desktop: {screen: HomePage}
 });
