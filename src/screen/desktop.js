@@ -4,18 +4,14 @@ import {
   ScrollView,
   Text,
   View,
-  TextInput,
-  Alert,
-  TouchableHighlight,
-  Button,
-  TouchableOpacity
+  Image,
 } from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 
 export default class Desktop extends Component {
     static navigationOptions = ({ navigation }) => ({
-    title: 'How u doing Doc?',
+    title: '',
       headerStyle: {
         position: 'absolute',
         backgroundColor: 'transparent',
@@ -28,13 +24,6 @@ export default class Desktop extends Component {
     });
     constructor(){
         super();
-        this.handleSubmit = this.handleSubmit.bind(this);
-    
-        this.state = {
-            name: "",
-            email:"",
-            password:""
-        };
     }
 
     handleSubmit(e){
@@ -42,12 +31,13 @@ export default class Desktop extends Component {
     }
 
     render() {
-        return (
-                <ScrollableTabView
+        return (             <Image style={styles.backgroundImg} source={require('./../Image/whiteabstract.jpg')} onLayout={this._onLayoutDidChange}>
+
+                <ScrollableTabView tabBarBackgroundColor ="transparent" tabBarActiveTextColor ="white" 
                         tabBarPosition="overlayBottom"
                         ref={(tabView) => { this.tabView = tabView; }}>
                     <View tabLabel='Profile'>
-                        
+                       
                     </View>
                     <View tabLabel='Insert'>
                         
@@ -59,10 +49,14 @@ export default class Desktop extends Component {
                         
                     </View>
                 </ScrollableTabView>
+                        </Image>
         );
     }
 }
 
 const styles = StyleSheet.create({
-
+  backgroundImg:{
+height: 660,
+        width:420
+    },
 });
