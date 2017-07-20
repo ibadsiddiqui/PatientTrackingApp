@@ -18,8 +18,8 @@ export default  class Register extends Component {
         position: 'absolute',
         backgroundColor: 'transparent',
         zIndex: 100,
-        top: 120,
-        left: 138,
+        top: 100,
+        left: 130,
         right: 142,
       },
       headerTintColor:"#bdbdbd"
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     container: {
         margin: 10,
-        marginTop: 220,
+        marginTop: 180,
         marginLeft: 35,
         borderRadius: 5
     },
