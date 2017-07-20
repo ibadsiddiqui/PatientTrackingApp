@@ -25,7 +25,7 @@ export default  class Login extends Component {
       headerTintColor:"#bdbdbd"
     });
     render() {
-        // const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             <Image style={styles.backgroundImg} source={require('./../Image/abstract2.jpg')} onLayout={this._onLayoutDidChange}>
                 <View style={styles.container}>
@@ -38,7 +38,7 @@ export default  class Login extends Component {
                             <Text style={styles.textAlign}>Enter Password: </Text> 
                             <TextInput secureTextEntry  style={styles.UserInput} onChangeText={(text)=>this.setState({password: text})}/>
                         </View>
-                        <TouchableHighlight onPress={()=>navigate('SignUp')}
+                        <TouchableHighlight onPress={()=>navigate('Desktop')}
                                     underlayColor ="#efefef" style={styles.submitBtn}>
                             <Text style={styles.submitText}>Login</Text>
                         </TouchableHighlight>
