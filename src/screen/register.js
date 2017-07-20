@@ -18,16 +18,15 @@ export default  class Register extends Component {
         position: 'absolute',
         backgroundColor: 'transparent',
         zIndex: 100,
-        top: 100,
+        top: 60,
         left: 130,
         right: 142,
       },
-      headerTintColor:"#bdbdbd"
+      headerTintColor:"#bdbdbd",
     });
     render() {
         // const { navigate } = this.props.navigation;
         return (
-
             <ScrollView ref={(scrollView) => { _scrollView = scrollView; }} automaticallyAdjustContentInsets={false}>
             <Image style={styles.backgroundImg} source={require('./../Image/abstract2.jpg')} onLayout={this._onLayoutDidChange}>
                 <View style={styles.container}>
