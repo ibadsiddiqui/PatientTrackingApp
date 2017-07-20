@@ -27,29 +27,31 @@ export default  class Register extends Component {
     render() {
         // const { navigate } = this.props.navigation;
         return (
+
+            <ScrollView ref={(scrollView) => { _scrollView = scrollView; }} automaticallyAdjustContentInsets={false}>
             <Image style={styles.backgroundImg} source={require('./../Image/abstract2.jpg')} onLayout={this._onLayoutDidChange}>
                 <View style={styles.container}>
-                    <ScrollView ref={(scrollView) => { _scrollView = scrollView; }} automaticallyAdjustContentInsets={false}>
                         <View style={styles.subContainer}>
-                            <Text style={styles.textAlign}>Enter Name: </Text> 
-                            <TextInput style={styles.UserInput} onChangeText={(text)=>this.setState({email: name})}/> 
+                            <Text style={styles.Text}>Enter Name: </Text> 
+                            <TextInput style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({email: name})}/> 
                         </View>
 
                         <View style={styles.subContainer}>
-                            <Text style={styles.textAlign}>Enter ID: </Text> 
-                            <TextInput style={styles.UserInput} onChangeText={(text)=>this.setState({email: text})}/> 
+                            <Text style={styles.Text}>Enter ID: </Text> 
+                            <TextInput style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({email: text})}/> 
                         </View>
                         <View style={styles.subContainer}>
-                            <Text style={styles.textAlign}>Enter Password: </Text> 
-                            <TextInput secureTextEntry  style={styles.UserInput} onChangeText={(text)=>this.setState({password: text})}/>
+                            <Text style={styles.Text}>Enter Password: </Text> 
+                            <TextInput secureTextEntry  style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({password: text})}/>
                         </View>
                         <TouchableHighlight onPress={()=>navigate('SignUp')}
                                     underlayColor ="#efefef" style={styles.submitBtn}>
                             <Text style={styles.submitText}>Login</Text>
                         </TouchableHighlight>
-                    </ScrollView>
                 </View>
             </Image>
+</ScrollView>
+            
         );
     }
 }
@@ -88,6 +90,9 @@ const styles = StyleSheet.create({
         borderRadius: 22,
         margin: 20,
         marginTop: 10,
+    },
+    Text:{
+        color: '#6aB666',
     },
     UserInput:{
         alignItems: 'center',
