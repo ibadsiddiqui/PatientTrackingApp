@@ -31,8 +31,8 @@ export default class Desktop extends Component {
     }
 
     render() {
-        return (             <Image style={styles.backgroundImg} source={require('./../Image/whiteabstract.jpg')} onLayout={this._onLayoutDidChange}>
-
+        return (             
+            <Image style={styles.backgroundImg} source={require('./../Image/whiteabstract.jpg')}>
                 <ScrollableTabView tabBarBackgroundColor ="transparent" tabBarActiveTextColor ="white" 
                         tabBarPosition="overlayBottom"
                         ref={(tabView) => { this.tabView = tabView; }}>
