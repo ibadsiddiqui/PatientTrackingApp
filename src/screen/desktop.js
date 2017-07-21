@@ -5,7 +5,7 @@ import {
 import ProfileTab from './desktoptabs/profiletab';
 import SearchTab from './desktoptabs/searchtab';
 import ViewHistoryTab from './desktoptabs/viewhistorytab';
-
+import InsertTab from './desktoptabs/inserttab'
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 
 export default class Desktop extends Component {
@@ -27,7 +27,7 @@ export default class Desktop extends Component {
                        <ProfileTab/>
                     </View>
                     <View tabLabel='Insert'>
-                        
+                        <InsertTab/>
                     </View>
                     <View tabLabel='View History'>
                         <ViewHistoryTab/>                    
