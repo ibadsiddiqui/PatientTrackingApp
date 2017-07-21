@@ -3,7 +3,7 @@ import {
   View,
 } from 'react-native';
 import ProfileTab from './desktoptabs/profiletab'
-
+import SearchTab from './desktoptabs/searchtab'
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 
 export default class Desktop extends Component {
@@ -31,7 +31,7 @@ export default class Desktop extends Component {
                     
                     </View>
                     <View tabLabel='Search'>
-                        
+                        <SearchTab/>
                     </View>
                 </ScrollableTabView>
         );
