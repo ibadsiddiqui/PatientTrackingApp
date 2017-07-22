@@ -5,12 +5,14 @@ import{
     TouchableHighlight,
     ScrollView,
     Text,
+    ToastAndroid,
     TextInput,
+    Alert,
     Button,
     View
 } from 'react-native';
 import {StackNavigator, navigate} from 'react-navigation'
-
+import firebase from 'firebase';
 export default  class Login extends Component {
     static navigationOptions = ({ navigation }) => ({
     title: 'Login',
@@ -24,8 +26,52 @@ export default  class Login extends Component {
       },
       headerTintColor:"#bdbdbd"
     });
+    constructor(props){
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSignIn = this.handleSignIn.bind(this);
+
+        this.state = {
+            email: "",
+            password: "",
+        };
+    }
+    handleSignIn(email, password) {
+        const { navigate } = this.props.navigation;        
+        if (email.length < 4) {
+            Alert.alert('Please enter an email address.');
+            return;
+        }
+        if (password.length < 4) {
+            Alert.alert('Please enter a password.');
+            return;
+        }
+        // Sign in with email and pass.
+        // [START createwithemail]
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // [START_EXCLUDE]
+            if (errorCode == 'auth/weak-password') {
+                Alert.alert('The password is in correct.');
+            } else {
+                Alert.alert(errorMessage);
+            }
+            console.log(error);
+        // [END_EXCLUDE]
+        });
+        // [END createwithemail]
+        ToastAndroid.show('Login Successful !', ToastAndroid.SHORT);
+        return navigate('Desktop');
+    }
+        
+    handleSubmit(e){
+        e.preventDefault();
+        this.handleSignIn(this.state.email, this.state.password);
+           
+    }
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <Image style={styles.backgroundImg} source={require('./../Image/abstract2.jpg')} onLayout={this._onLayoutDidChange}>
                 <View style={styles.container}>
@@ -38,7 +84,7 @@ export default  class Login extends Component {
                             <Text style={styles.textAlign}>Enter Password: </Text> 
                             <TextInput secureTextEntry  style={styles.UserInput} onChangeText={(text)=>this.setState({password: text})}/>
                         </View>
-                        <TouchableHighlight onPress={()=>navigate('Desktop')}
+                        <TouchableHighlight onPress={this.handleSubmit}
                                     underlayColor ="#efefef" style={styles.submitBtn}>
                             <Text style={styles.submitText}>Login</Text>
                         </TouchableHighlight>
