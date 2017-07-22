@@ -4,12 +4,15 @@ import{
     StyleSheet,
     TouchableHighlight,
     ScrollView,
+    ToastAndroid,
     Text,
+    Alert,
     TextInput,
     Button,
     View
 } from 'react-native';
 import {StackNavigator, navigate} from 'react-navigation'
+import firebase from 'firebase'
 
 export default  class Register extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -24,32 +27,77 @@ export default  class Register extends Component {
       },
       headerTintColor:"#bdbdbd",
     });
+
+    constructor(props){
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
+        this.state={
+            name: "",
+            email:"",
+            password:"",   
+        }
+    }
+    handleSignUp(email, password) {
+        const { navigate } = this.props.navigation;        
+        if (email.length < 4) {
+            Alert.alert('Please enter an email address.');
+            return;
+        }
+        if (password.length < 4) {
+            Alert.alert('Please enter a password.');
+            return;
+        }
+        // Sign in with email and pass.
+        // [START createwithemail]
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // [START_EXCLUDE]
+            if (errorCode == 'auth/weak-password') {
+                Alert.alert('The password is too weak.');
+            } else {
+                Alert.alert(errorMessage);
+            }
+            console.log(error);
+        // [END_EXCLUDE]
+        });
+        // [END createwithemail]
+        ToastAndroid.show('Signup Successful !', ToastAndroid.SHORT);
+        return navigate('Desktop');
+    }
+        
+    handleSubmit(e){
+        e.preventDefault();
+        this.handleSignUp(this.state.email, this.state.password);
+           
+    }
     render() {
-        // const { navigate } = this.props.navigation;
         return (
             <ScrollView ref={(scrollView) => { _scrollView = scrollView; }} automaticallyAdjustContentInsets={false}>
             <Image style={styles.backgroundImg} source={require('./../Image/abstract2.jpg')} onLayout={this._onLayoutDidChange}>
                 <View style={styles.container}>
-                        <View style={styles.subContainer}>
-                            <Text style={styles.Text}>Enter Name: </Text> 
-                            <TextInput style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({email: name})}/> 
-                        </View>
+                    <View style={styles.subContainer}>
+                        <Text style={styles.Text}>Enter Name: </Text> 
+                        <TextInput style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({name: text})}/> 
+                   </View>
 
-                        <View style={styles.subContainer}>
-                            <Text style={styles.Text}>Enter ID: </Text> 
-                            <TextInput style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({email: text})}/> 
-                        </View>
-                        <View style={styles.subContainer}>
-                            <Text style={styles.Text}>Enter Password: </Text> 
-                            <TextInput secureTextEntry  style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({password: text})}/>
-                        </View>
-                        <TouchableHighlight onPress={()=>navigate('SignUp')}
-                                    underlayColor ="#efefef" style={styles.submitBtn}>
-                            <Text style={styles.submitText}>Login</Text>
-                        </TouchableHighlight>
+                    <View style={styles.subContainer}>
+                        <Text style={styles.Text}>Enter ID: </Text> 
+                        <TextInput style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({email: text})}/> 
+                    </View>
+                    <View style={styles.subContainer}>
+                        <Text style={styles.Text}>Enter Password: </Text> 
+                        <TextInput secureTextEntry  style={[styles.UserInput,styles.Text]} onChangeText={(text)=>this.setState({password: text})}/>
+                    </View>
+                    <TouchableHighlight onPress={this.handleSubmit}
+                                underlayColor ="#efefef" style={styles.submitBtn}>
+                        <Text style={styles.submitText}>Sign Up</Text>
+                    </TouchableHighlight>
                 </View>
             </Image>
-</ScrollView>
+        </ScrollView>
             
         );
     }
